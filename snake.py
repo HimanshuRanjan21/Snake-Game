@@ -17,7 +17,8 @@ pygame.display.set_caption("Snake Don Hai")
 pygame.display.update()
 
 
-
+img=pygame.image.load('image.png')
+img=pygame.transform.scale(img,(900,600)).convert_alpha()
 
 clock=pygame.time.Clock()
 font=pygame.font.SysFont(None,55)
@@ -40,6 +41,7 @@ def welcome():
     pygame.mixer.music.play() 
     while not exit_game:
         gameWindow.fill((233,220,229))
+        gameWindow.blit(img,(0,0))
        
         text_screen("Welcomes to Snakes",black,250,270)
         text_screen("Press Space to PLAY!",black,250,500)
@@ -104,6 +106,7 @@ def gameloop():
             with open("highscore.txt",'w') as f:
                 f.write(str(highscore))
             gameWindow.fill((233,220,229))
+  
             text_screen("Game Over! Press Enter to Continue",red,100,270)
             for event in pygame.event.get(): 
 
@@ -165,6 +168,7 @@ def gameloop():
 
 
             gameWindow.fill(white)
+  
             text_screen(f'Score::{score*10}  High Score::{highscore}',red,5,5)
             pygame.draw.rect(gameWindow,red,[food_x,food_y,snake_size,snake_size])
 
